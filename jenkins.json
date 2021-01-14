@@ -3,7 +3,7 @@
         "type": "raw",
         "directory": "de/sabio/icinga-check-rabbitmq",
         "filename": "check-rabbitmq",
-        "version": "0.0.13",
+        "version": "0.0.14",
         "flags-package": "cmd",
         "mainfile": "cmd/CheckRabbitMQ.go"
     },
