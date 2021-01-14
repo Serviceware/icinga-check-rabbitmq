@@ -34,7 +34,7 @@ func main() {
 	code := 4
 	switch parser.Active.Name {
 	case "aliveness":
-		code = internal.NewClusterCheck(rabbitmqClient()).DoCheck()
+		code = internal.NewAlivenessCheck(rabbitmqClient()).DoCheck()
 	}
 
 	os.Exit(code)
