@@ -6,27 +6,25 @@ import (
 
 type AlivenessCheck struct {
 	client *rabbithole.Client
+	vhost  string
 }
 
 type Aliveness struct {
 	Status string `json:"status"`
 }
 
-func NewAlivenessCheck(client *rabbithole.Client) Check {
-	return &AlivenessCheck{client: client}
+func NewAlivenessCheck(client *rabbithole.Client, vhost string) Check {
+	return &AlivenessCheck{client: client, vhost: vhost}
 }
 
 func (c *AlivenessCheck) DoCheck() int {
-	println(1)
-	aliveness, err := c.client.Aliveness("labs")
-	println(2)
+	aliveness, err := c.client.Aliveness(c.vhost)
+
 	if err != nil {
 		println(err.Error())
 		return 2
 	}
-	println(3)
 
 	println(aliveness.Status)
-	println(4)
 	return 0
 }
