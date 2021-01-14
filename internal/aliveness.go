@@ -17,13 +17,16 @@ func NewAlivenessCheck(client *rabbithole.Client) Check {
 }
 
 func (c *AlivenessCheck) DoCheck() int {
+	println(1)
 	aliveness, err := c.client.Aliveness("labs")
-
+	println(2)
 	if err != nil {
 		println(err.Error())
 		return 2
 	}
+	println(3)
 
 	println(aliveness.Status)
+	println(4)
 	return 0
 }
