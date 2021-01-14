@@ -14,6 +14,7 @@ type Aliveness struct {
 }
 
 func NewAlivenessCheck(client *rabbithole.Client, vhost string) Check {
+	println(client.Endpoint)
 	return &AlivenessCheck{client: client, vhost: vhost}
 }
 
