@@ -26,5 +26,10 @@ func (c *AlivenessCheck) DoCheck() int {
 	}
 
 	println(aliveness.Status)
+
+	if aliveness.Status != "ok" {
+		return 1
+	}
+
 	return 0
 }
