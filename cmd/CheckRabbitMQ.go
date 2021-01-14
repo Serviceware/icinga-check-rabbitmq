@@ -33,10 +33,6 @@ var opts = new(args)
 func main() {
 	parser := parseFlags()
 
-	println(opts.Address)
-	println(opts.ClientCert)
-	println(opts.Vhost)
-
 	code := 4
 	switch parser.Active.Name {
 	case "aliveness":
