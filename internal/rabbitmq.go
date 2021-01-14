@@ -28,7 +28,6 @@ func (c *CLientConfig) NewRabbitMQClient() (*rabbithole.Client, error) {
 
 	transport := &http.Transport{TLSClientConfig: tlsConfig}
 	client, err := rabbithole.NewTLSClient(c.Address, c.Username, c.Password, transport)
-	println("endpoint", client.Endpoint)
 
 	return client, err
 }

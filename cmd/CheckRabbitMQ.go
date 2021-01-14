@@ -45,6 +45,7 @@ func main() {
 func rabbitmqClient() *rabbithole.Client {
 	password := readPassword()
 	config := internal.CLientConfig{
+		Address:    opts.Address,
 		CaCert:     opts.CaCert,
 		ClientCert: opts.ClientCert,
 		ClientKey:  opts.ClientKey,
