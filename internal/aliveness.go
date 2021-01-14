@@ -13,7 +13,7 @@ type AlivenessCheck struct {
 }
 
 type Aliveness struct {
-	Name string `json:"status"`
+	Status string `json:"status"`
 }
 
 func NewAlivenessCheck(client *rabbithole.Client) Check {
@@ -21,13 +21,14 @@ func NewAlivenessCheck(client *rabbithole.Client) Check {
 }
 
 func (c *AlivenessCheck) DoCheck() int {
-	_, err := c.Aliveness()
+	aliveness, err := c.Aliveness()
 
 	if err != nil {
 		println(err.Error())
 		return 2
 	}
 
+	println(aliveness.Status)
 	return 0
 }
 
