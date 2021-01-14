@@ -1,3 +1,5 @@
+github.com/Serviceware/rabbit-hole/v2 v2.6.1-0.20210114143609-0941b92361d2 h1:mL8K5WAQhHYfIikHX7z828+CxnF4X4E0v8R8mAjrwVo=
+github.com/Serviceware/rabbit-hole/v2 v2.6.1-0.20210114143609-0941b92361d2/go.mod h1:xD6caPrK17/4SfJhz069a4aMwVJppNuKwR9hnPAn6Qk=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/docker/go-units v0.3.3/go.mod h1:fgPhTUdO+D/Jk86RDLlptpiXQzgHJF7gydDDbaIK4Dk=
@@ -29,9 +31,6 @@ github.com/jessevdk/go-flags v1.4.0/go.mod h1:4FA24M0QyGHXBuZZK/XkWh8h0e1EYbRYJS
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
 github.com/kr/text v0.1.0/go.mod h1:4Jbv+DJW3UT/LiOwJeYQe1efqtUx/iVham/4vfdArNI=
-github.com/michaelklishin/rabbit-hole v1.5.0 h1:Bex27BiFDsijCM9D0ezSHqyy0kehpYHuNKaPqq/a4RM=
-github.com/michaelklishin/rabbit-hole/v2 v2.6.0 h1:oMLErqUVIYpXClYujgkCXtJNLswnth0LlJ8G3lKPF30=
-github.com/michaelklishin/rabbit-hole/v2 v2.6.0/go.mod h1:VZQTDutXFmoyrLvlRjM79MEPb0+xCLLhV5yBTjwMWkM=
 github.com/mitchellh/go-homedir v1.1.0/go.mod h1:SfyaCUpYCn1Vlf4IUYiD9fPX4A5wJrkLzIz1N1q0pr0=
 github.com/mitchellh/go-testing-interface v1.0.0/go.mod h1:kRemZodwjscx+RGhAo8eIhFbs2+BFgRtFPeD/KE+zxI=
 github.com/mitchellh/mapstructure v1.3.3 h1:SzB1nHZ2Xi+17FP0zVQBHIZqvwRN9408fJO8h+eeNA8=

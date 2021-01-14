@@ -2,8 +2,8 @@ package main
 
 import (
 	"bitbucket.org/sabio-it/icinga-check-rabbitmq/internal"
+	rabbithole "github.com/Serviceware/rabbit-hole/v2"
 	"github.com/jessevdk/go-flags"
-	rabbithole "github.com/michaelklishin/rabbit-hole/v2"
 	"io/ioutil"
 	"log"
 	"os"
@@ -18,7 +18,6 @@ type args struct {
 	Username     string `long:"username" description:"Username for RabbitMQ authentication" group:"connection"`
 	Password     string `long:"password" description:"Password for RabbitMQ authentication" group:"connection"`
 	PasswordFile string `long:"passwordFile" description:"File which contains the password for RabbitMQ authentication" group:"connection"`
-
 
 	Aliveness void `command:"aliveness"`
 	Check     void `command:"check"`

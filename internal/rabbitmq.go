@@ -3,7 +3,7 @@ package internal
 import (
 	"crypto/tls"
 	"crypto/x509"
-	rabbithole "github.com/michaelklishin/rabbit-hole/v2"
+	rabbithole "github.com/Serviceware/rabbit-hole/v2"
 	"io/ioutil"
 	"log"
 	"net/http"
