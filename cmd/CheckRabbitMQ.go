@@ -22,7 +22,7 @@ type args struct {
 	Vhost string `long:"vhost" description:"vhost to check"`
 
 	Aliveness void `command:"aliveness"`
-	Check     void `command:"check"`
+	Health    void `command:"health"`
 }
 
 type void struct {
@@ -37,6 +37,8 @@ func main() {
 	switch parser.Active.Name {
 	case "aliveness":
 		code = internal.NewAlivenessCheck(rabbitmqClient(), opts.Vhost).DoCheck()
+	case "health":
+		code = internal.NewHealthCheck(rabbitmqClient()).DoCheck()
 	}
 
 	os.Exit(code)
