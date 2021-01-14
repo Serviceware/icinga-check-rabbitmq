@@ -19,6 +19,7 @@ type args struct {
 	Password     string `long:"password" description:"Password for RabbitMQ authentication" group:"connection"`
 	PasswordFile string `long:"passwordFile" description:"File which contains the password for RabbitMQ authentication" group:"connection"`
 
+
 	Aliveness void `command:"aliveness"`
 	Check     void `command:"check"`
 }
