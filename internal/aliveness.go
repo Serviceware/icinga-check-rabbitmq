@@ -18,6 +18,7 @@ func NewAlivenessCheck(client *rabbithole.Client, vhost string) Check {
 }
 
 func (c *AlivenessCheck) DoCheck() int {
+	println(c.client.Endpoint)
 	aliveness, err := c.client.Aliveness(c.vhost)
 
 	if err != nil {
