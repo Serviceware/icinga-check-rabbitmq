@@ -1,5 +1,7 @@
 github.com/Serviceware/rabbit-hole/v2 v2.6.1-0.20210114143609-0941b92361d2 h1:mL8K5WAQhHYfIikHX7z828+CxnF4X4E0v8R8mAjrwVo=
 github.com/Serviceware/rabbit-hole/v2 v2.6.1-0.20210114143609-0941b92361d2/go.mod h1:xD6caPrK17/4SfJhz069a4aMwVJppNuKwR9hnPAn6Qk=
+github.com/Serviceware/rabbit-hole/v2 v2.6.1-0.20210114145237-de83739a24c3 h1:ajNMJj3uiwOXd1vSq1UdV6XBERgGfBZEfHTpoU1lOyk=
+github.com/Serviceware/rabbit-hole/v2 v2.6.1-0.20210114145237-de83739a24c3/go.mod h1:xD6caPrK17/4SfJhz069a4aMwVJppNuKwR9hnPAn6Qk=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/docker/go-units v0.3.3/go.mod h1:fgPhTUdO+D/Jk86RDLlptpiXQzgHJF7gydDDbaIK4Dk=
