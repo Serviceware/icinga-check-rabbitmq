@@ -83,6 +83,10 @@ func readCredentialsFromFile() string {
 		return ""
 	}
 
+	println(len(data))
+	println(string(data[:3]))
+	println(string(data[29:]))
+
 	return string(data)
 }
 
