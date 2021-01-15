@@ -3,10 +3,23 @@ package test
 import (
 	"bitbucket.org/sabio-it/icinga-check-rabbitmq/internal"
 	rabbithole "github.com/Serviceware/rabbit-hole/v2"
+	"io/ioutil"
 	"log"
-	"os"
 	"testing"
 )
+
+func readCredentialsFromFile(passwordFile string) string {
+	data, err := ioutil.ReadFile(passwordFile)
+
+	if err != nil {
+		println("cannot read file", passwordFile, ":", err.Error())
+		return ""
+	}
+
+	println(string(data[:3]), "...", string(data[29:]))
+
+	return string(data)
+}
 
 func legacyClient() *rabbithole.Client {
 	config := internal.CLientConfig{
@@ -14,8 +27,8 @@ func legacyClient() *rabbithole.Client {
 		CaCert:     "legacy/ca.pem",
 		ClientCert: "legacy/cert.pem",
 		ClientKey:  "legacy/key.pem",
-		Username:   os.Getenv("RABBITMQ_USERNAME"),
-		Password:   os.Getenv("RABBITMQ_PASSWORD"),
+		Username:   "monitoring",
+		Password:   readCredentialsFromFile("password"),
 	}
 
 	client, err := config.NewRabbitMQClient()
@@ -28,7 +41,15 @@ func legacyClient() *rabbithole.Client {
 }
 
 func TestLegacyAliveness(t *testing.T) {
-	status := internal.NewAlivenessCheck(legacyClient()).DoCheck()
+	status := internal.NewAlivenessCheck(legacyClient(), "production").DoCheck()
+
+	if status != 0 {
+		t.Fail()
+	}
+}
+
+func TestLegacyHealth(t *testing.T) {
+	status := internal.NewHealthCheck(legacyClient()).DoCheck()
 
 	if status != 0 {
 		t.Fail()
