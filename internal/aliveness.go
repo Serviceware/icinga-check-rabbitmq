@@ -4,8 +4,12 @@ import (
 	rabbithole "github.com/Serviceware/rabbit-hole/v2"
 )
 
-func CheckAliveness(client *rabbithole.Client, vhost string) int {
-	aliveness, err := client.Aliveness(vhost)
+type CheckAlivenessOpts struct {
+	Vhost string `long:"vhost" description:"The vhost to check"`
+}
+
+func CheckAliveness(client *rabbithole.Client, opts *CheckAlivenessOpts) int {
+	aliveness, err := client.Aliveness(opts.Vhost)
 
 	if err != nil {
 		println(err.Error())
