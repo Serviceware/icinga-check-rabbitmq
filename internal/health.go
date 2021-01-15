@@ -7,18 +7,15 @@ func CheckHealth(client *rabbithole.Client) int {
 
 	if err != nil {
 		println(err.Error())
-		return 2
+		return CRITICAL
 	}
-
-	code := 0
 
 	if health.Status != "ok" {
 		println("status =", health.Status)
 		println("reason =", health.Reason)
-		code = 1
+		return WARNING
 	} else {
 		println("ok")
+		return OK
 	}
-
-	return code
 }

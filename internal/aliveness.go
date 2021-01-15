@@ -13,14 +13,14 @@ func CheckAliveness(client *rabbithole.Client, opts *CheckAlivenessOpts) int {
 
 	if err != nil {
 		println(err.Error())
-		return 2
+		return CRITICAL
 	}
 
 	println(aliveness.Status)
 
 	if aliveness.Status != "ok" {
-		return 1
+		return WARNING
 	}
 
-	return 0
+	return OK
 }
