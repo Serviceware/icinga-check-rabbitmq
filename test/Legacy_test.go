@@ -16,8 +16,6 @@ func readCredentialsFromFile(passwordFile string) string {
 		return ""
 	}
 
-	println(string(data[:3]), "...", string(data[29:]))
-
 	return string(data)
 }
 
