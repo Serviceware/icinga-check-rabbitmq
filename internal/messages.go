@@ -19,11 +19,11 @@ func CheckMessages(client *rabbithole.Client, opts *CheckMessagesOpts) int {
 
 	totalMessages := overview.QueueTotals.Messages
 	if totalMessages > opts.CriticalLimit {
-		println("messages", overview.QueueTotals.Messages, "exceeds critical limit", opts.WarnLimit)
-		code = 1
-	} else if totalMessages > opts.WarnLimit {
-		println("messages", overview.QueueTotals.Messages, "exceeds warn limit", opts.WarnLimit)
+		println(overview.QueueTotals.Messages, "messages exceeds critical limit", opts.WarnLimit)
 		code = 2
+	} else if totalMessages > opts.WarnLimit {
+		println(overview.QueueTotals.Messages, "messages exceeds warn limit", opts.WarnLimit)
+		code = 1
 	}
 
 	return code
