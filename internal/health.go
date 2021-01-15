@@ -22,6 +22,8 @@ func (c *HealthCheck) DoCheck() int {
 		println("status =", health.Status)
 		println("reason =", health.Reason)
 		return 2
+	} else {
+		println("ok")
 	}
 
 	return 0
