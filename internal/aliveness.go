@@ -4,21 +4,8 @@ import (
 	rabbithole "github.com/Serviceware/rabbit-hole/v2"
 )
 
-type AlivenessCheck struct {
-	client *rabbithole.Client
-	vhost  string
-}
-
-type Aliveness struct {
-	Status string `json:"status"`
-}
-
-func NewAlivenessCheck(client *rabbithole.Client, vhost string) Check {
-	return &AlivenessCheck{client: client, vhost: vhost}
-}
-
-func (c *AlivenessCheck) DoCheck() int {
-	aliveness, err := c.client.Aliveness(c.vhost)
+func CheckAliveness(client *rabbithole.Client, vhost string) int {
+	aliveness, err := client.Aliveness(vhost)
 
 	if err != nil {
 		println(err.Error())

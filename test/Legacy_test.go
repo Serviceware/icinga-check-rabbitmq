@@ -53,3 +53,14 @@ func TestLegacyHealth(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestLegacyNode(t *testing.T) {
+	opts := &internal.CheckNodeOpts{
+		Node: "rabbit@rabbitmq01.nomadsupport-internal.hc.sabio.de",
+	}
+	status := internal.CheckNode(legacyClient(), opts)
+
+	if status != 0 {
+		t.Fail()
+	}
+}
