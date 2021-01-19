@@ -12,6 +12,6 @@ func Ping(client *rabbithole.Client) int {
 		return CRITICAL
 	}
 
-	println("ok")
+	println("ok - node is reachable")
 	return OK
 }

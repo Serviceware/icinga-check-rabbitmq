@@ -32,7 +32,7 @@ func CheckNode(client *rabbithole.Client, opts *CheckNodeOpts) int {
 	}
 
 	if status == OK {
-		println("ok")
+		println("ok - node is running, no alarms")
 	}
 
 	return status

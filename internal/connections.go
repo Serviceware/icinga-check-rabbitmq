@@ -21,7 +21,7 @@ func CheckConnections(client *rabbithole.Client) int {
 	}
 
 	if status == OK {
-		println("ok")
+		println("ok - all connections in state running")
 	}
 
 	return status

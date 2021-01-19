@@ -21,7 +21,7 @@ func CheckQueues(client *rabbithole.Client) int {
 	}
 
 	if status == OK {
-		println("ok")
+		println("ok - all queues in state running ")
 	}
 
 	return status
