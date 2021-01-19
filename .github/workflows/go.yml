@@ -21,7 +21,6 @@ jobs:
         ports:
           - 15672:15672
     steps:
-      - run: hostnamectl set-hostname github
       - uses: actions/checkout@v2
 
       - name: Set up Go
