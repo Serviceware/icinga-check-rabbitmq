@@ -1,4 +1,4 @@
-name: Go
+name: Build
 
 on:
   push:
@@ -7,15 +7,14 @@ on:
     branches: [ master ]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     services:
       rabbitmq:
         image: rabbitmq:3.8.10-rc.6-management
-        hostname: github
         env:
-          RABBITMQ_NODENAME: rabbit@github
+          HOSTNAME: github
+          RABBITMQ_NODENAME: rabbit
           RABBITMQ_DEFAULT_USER: monitoring
           RABBITMQ_DEFAULT_PASS: secret
         ports:
