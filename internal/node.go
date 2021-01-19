@@ -15,25 +15,25 @@ func CheckNode(client *rabbithole.Client, opts *CheckNodeOpts) int {
 		return UNKNOWN
 	}
 
-	code := OK
+	status := OK
 	if node.DiskFreeAlarm {
 		println("diskfree", node.DiskFree, "exceeds", node.DiskFreeLimit)
-		code = WARNING
+		status = WARNING
 	}
 
 	if node.MemAlarm {
 		println("memfree", node.MemUsed, "exceeds", node.MemLimit)
-		code = WARNING
+		status = WARNING
 	}
 
 	if !node.IsRunning {
 		println("node", opts.Node, "not running")
-		code = CRITICAL
+		status = CRITICAL
 	}
 
-	if code == OK {
+	if status == OK {
 		println("ok")
 	}
 
-	return code
+	return status
 }
