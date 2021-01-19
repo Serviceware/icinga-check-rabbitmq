@@ -5,7 +5,7 @@ Icinga check for RabbitMQ
 ## Build
 
 ```
-go build -o check_rabbitmq ./cmd/CheckRabbitMQ.go
+go build -o check-rabbitmq ./cmd/CheckRabbitMQ.go
 ```
 
 ## Test
@@ -83,7 +83,7 @@ check-rabbitmq messages --total-messages-warning-limit 100000 --total-messages-c
 
 ### Queues
 
-Checks all queues if they are in `running` state. If one is not, a `WARNING` is returned
+Checks all queues if they are in `running` state. If one is not, a `WARNING` is returned.
 
 ```shell
 check-rabbitmq queues
