@@ -17,7 +17,7 @@ jobs:
         env:
           RABBITMQ_NODENAME: rabbit@github
           RABBITMQ_DEFAULT_USER: monitoring
-          RABBITMQ_DEFAULT_PASSWORD: secret
+          RABBITMQ_DEFAULT_PASS: secret
         ports:
           - 15672:15672
     steps:

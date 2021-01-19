@@ -12,7 +12,7 @@ go build -o check_rabbitmq ./cmd/CheckRabbitMQ.go
 
 Start a docker container for RabbitMQ:
 ```
-docker run -p 5672:5672 -p 5671:5671 -p 15672:15672 -p 15671:15671 rabbitmq:3.8.10-rc.6-management
+docker run -h github -e RABBITMQ_DEFAULT_USER=monitoring -e RABBITMQ_DEFAULT_PASS=secret -e RABBITMQ_NODENAME=rabbit -p 15672:15672 rabbitmq:3.8.10-rc.6-management
 ```
 
 Run tests:
