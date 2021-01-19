@@ -20,15 +20,16 @@ jobs:
         ports:
           - 15672:15672
     steps:
-    - uses: actions/checkout@v2
+      - run: hostnamectl set-hostname github
+      - uses: actions/checkout@v2
 
-    - name: Set up Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: 1.15
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.15
 
-    - name: Build
-      run: go build -v ./cmd/CheckRabbitMQ.go
+      - name: Build
+        run: go build -v ./cmd/CheckRabbitMQ.go
 
-    - name: Test
-      run: go test -v ./test
+      - name: Test
+        run: go test -v ./test
