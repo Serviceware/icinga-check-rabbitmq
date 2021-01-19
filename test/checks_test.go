@@ -23,7 +23,7 @@ func TestConnections(t *testing.T) {
 
 func TestMessages(t *testing.T) {
 	opts := &checks.CheckMessagesOpts{
-		WarnLimit:     10,
+		WarningLimit:  10,
 		CriticalLimit: 20,
 	}
 	status := checks.CheckMessages(client(), opts)

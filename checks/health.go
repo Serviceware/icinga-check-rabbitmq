@@ -51,17 +51,17 @@ func CheckHealth(client *rabbithole.Client, check Check, opts *CheckHealthOpts) 
 		health, err = client.HealthCheckAlarms()
 	case LOCAL_ALARMS:
 		health, err = client.HealthCheckLocalAlarms()
-	case "certificate-expiration":
+	case CERTIFICATE_EXPIRATION:
 		health, err = client.HealthCheckCertificateExpiration(opts.CertificateExpiration.Within, opts.CertificateExpiration.Unit)
-	case "port-listener":
+	case PORT_LISTENER:
 		health, err = client.HealthCheckPortListenerListener(opts.PortListener.Port)
-	case "protocol-listener":
+	case PROTOCOL_LISTENER:
 		health, err = client.HealthCheckProtocolListener(opts.ProtocolLister.Protocol)
-	case "virtual-hosts":
+	case VIRTUAL_HOSTS:
 		health, err = client.HealthCheckVirtualHosts()
-	case "node-is-mirror-sync-critical":
+	case NODE_IS_MIRROR_SYNC_CRITICAL:
 		health, err = client.HealthCheckNodeIsMirrorSyncCritical()
-	case "node-is-quorum-critical":
+	case NODE_IS_QUORUM_CRITICAL:
 		health, err = client.HealthCheckNodeIsQuorumCritical()
 	}
 

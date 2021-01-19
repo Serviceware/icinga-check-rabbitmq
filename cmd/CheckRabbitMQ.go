@@ -17,7 +17,7 @@ type args struct {
 	ClientKey    string `long:"key" description:"Path to client key" group:"connection"`
 	Username     string `long:"username" description:"Username for RabbitMQ authentication" group:"connection"`
 	Password     string `long:"password" description:"Password for RabbitMQ authentication" group:"connection"`
-	PasswordFile string `long:"passwordFile" description:"File which contains the password for RabbitMQ authentication" group:"connection"`
+	PasswordFile string `long:"password-file" description:"File which contains the password for RabbitMQ authentication" group:"connection"`
 
 	Ping        checks.Void              `command:"ping"`
 	Health      checks.CheckHealthOpts   `command:"health"`
