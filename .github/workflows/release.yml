@@ -27,7 +27,7 @@ jobs:
         with:
           go-version: 1.15
       - name: Build
-        run: go build -o check-rabbitmq -v ./cmd/CheckRabbitMQ.go
+        run: GOOS=linux CGO_ENABLED=0 go build -o check-rabbitmq -v ./cmd/CheckRabbitMQ.go
       - name: Test
         run: go test -v ./test
       - name: Create Release
@@ -38,7 +38,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
-          draft: true
+          draft: false
           prerelease: false
       - name: Upload Release Asset
         id: upload-release-asset

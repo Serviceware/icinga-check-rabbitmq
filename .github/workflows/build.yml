@@ -30,7 +30,7 @@ jobs:
           go-version: 1.15
 
       - name: Build
-        run: go build -v ./cmd/CheckRabbitMQ.go
+        run: GOOS=linux CGO_ENABLED=0 go build -v ./cmd/CheckRabbitMQ.go
 
       - name: Test
         run: go test -v ./test
