@@ -35,16 +35,18 @@ func main() {
 
 	status := 4
 	switch parser.Active.Name {
-	case "ping":
-		status = internal.Ping(rabbitmqClient())
-	case "health":
-		status = internal.CheckHealth(rabbitmqClient(), internal.Check(parser.Active.Active.Name), &opts.Health)
-	case "node":
-		status = internal.CheckNode(rabbitmqClient(), &opts.Node)
-	case "messages":
-		status = internal.CheckMessages(rabbitmqClient(), &opts.Messages)
+	case "channels":
+		status = internal.CheckChannels(rabbitmqClient())
 	case "connections":
 		status = internal.CheckConnections(rabbitmqClient())
+	case "health":
+		status = internal.CheckHealth(rabbitmqClient(), internal.Check(parser.Active.Active.Name), &opts.Health)
+	case "messages":
+		status = internal.CheckMessages(rabbitmqClient(), &opts.Messages)
+	case "node":
+		status = internal.CheckNode(rabbitmqClient(), &opts.Node)
+	case "ping":
+		status = internal.Ping(rabbitmqClient())
 	case "queues":
 		status = internal.CheckQueues(rabbitmqClient())
 	}

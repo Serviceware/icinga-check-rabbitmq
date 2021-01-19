@@ -3,7 +3,7 @@ package internal
 import rabbithole "github.com/Serviceware/rabbit-hole/v2"
 
 // Checks if there is a blocked channel
-func CheckChannel(client *rabbithole.Client) int {
+func CheckChannels(client *rabbithole.Client) int {
 	channels, err := client.ListChannels()
 
 	if err != nil {
@@ -21,7 +21,7 @@ func CheckChannel(client *rabbithole.Client) int {
 	}
 
 	if status == OK {
-		println("ok")
+		println("OK - no channel in flow state")
 	}
 
 	return status
