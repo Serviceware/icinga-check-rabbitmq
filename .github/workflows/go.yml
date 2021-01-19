@@ -13,6 +13,10 @@ jobs:
     services:
       rabbitmq:
         image: rabbitmq:3.8.10-rc.6-management
+        env:
+          RABBITMQ_NODENAME: rabbit@github
+          RABBITMQ_DEFAULT_USER: monitoring
+          RABBITMQ_DEFAULT_PASSWORD: secret
         ports:
           - 15672:15672
     steps:
