@@ -9,8 +9,8 @@ import (
 func client() *rabbithole.Client {
 	config := internal.CLientConfig{
 		Address:  "http://localhost:15672",
-		Username: "guest",
-		Password: "guest",
+		Username: "monitoring",
+		Password: "secret",
 	}
 
 	client, err := config.NewRabbitMQClient()
