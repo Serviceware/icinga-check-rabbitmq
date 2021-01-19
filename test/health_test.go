@@ -1,12 +1,12 @@
 package test
 
 import (
-	"bitbucket.org/sabio-it/icinga-check-rabbitmq/internal"
+	"bitbucket.org/sabio-it/icinga-check-rabbitmq/checks"
 	"testing"
 )
 
 func TestHealthAlarms(t *testing.T) {
-	status := internal.CheckHealth(client(), internal.ALARMS, &internal.CheckHealthOpts{})
+	status := checks.CheckHealth(client(), checks.ALARMS, &checks.CheckHealthOpts{})
 
 	if status != 0 {
 		t.Fail()
@@ -14,7 +14,7 @@ func TestHealthAlarms(t *testing.T) {
 }
 
 func TestHealthLocalAlarms(t *testing.T) {
-	status := internal.CheckHealth(client(), internal.LOCAL_ALARMS, &internal.CheckHealthOpts{})
+	status := checks.CheckHealth(client(), checks.LOCAL_ALARMS, &checks.CheckHealthOpts{})
 
 	if status != 0 {
 		t.Fail()

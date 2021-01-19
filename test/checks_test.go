@@ -1,12 +1,12 @@
 package test
 
 import (
-	"bitbucket.org/sabio-it/icinga-check-rabbitmq/internal"
+	"bitbucket.org/sabio-it/icinga-check-rabbitmq/checks"
 	"testing"
 )
 
 func TestChannels(t *testing.T) {
-	status := internal.CheckQueues(client())
+	status := checks.CheckQueues(client())
 
 	if status != 0 {
 		t.Fail()
@@ -14,7 +14,7 @@ func TestChannels(t *testing.T) {
 }
 
 func TestConnections(t *testing.T) {
-	status := internal.CheckConnections(client())
+	status := checks.CheckConnections(client())
 
 	if status != 0 {
 		t.Fail()
@@ -22,11 +22,11 @@ func TestConnections(t *testing.T) {
 }
 
 func TestMessages(t *testing.T) {
-	opts := &internal.CheckMessagesOpts{
+	opts := &checks.CheckMessagesOpts{
 		WarnLimit:     10,
 		CriticalLimit: 20,
 	}
-	status := internal.CheckMessages(client(), opts)
+	status := checks.CheckMessages(client(), opts)
 
 	if status != 0 {
 		t.Fail()
@@ -34,10 +34,10 @@ func TestMessages(t *testing.T) {
 }
 
 func TestNode(t *testing.T) {
-	opts := &internal.CheckNodeOpts{
+	opts := &checks.CheckNodeOpts{
 		Node: "rabbit@github",
 	}
-	status := internal.CheckNode(client(), opts)
+	status := checks.CheckNode(client(), opts)
 
 	if status != 0 {
 		t.Fail()
@@ -45,7 +45,7 @@ func TestNode(t *testing.T) {
 }
 
 func TestPing(t *testing.T) {
-	status := internal.Ping(client())
+	status := checks.Ping(client())
 
 	if status != 0 {
 		t.Fail()
@@ -53,7 +53,7 @@ func TestPing(t *testing.T) {
 }
 
 func TestQueues(t *testing.T) {
-	status := internal.CheckQueues(client())
+	status := checks.CheckQueues(client())
 
 	if status != 0 {
 		t.Fail()

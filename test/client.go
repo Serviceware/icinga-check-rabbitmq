@@ -1,13 +1,13 @@
 package test
 
 import (
-	"bitbucket.org/sabio-it/icinga-check-rabbitmq/internal"
+	"bitbucket.org/sabio-it/icinga-check-rabbitmq/checks"
 	rabbithole "github.com/Serviceware/rabbit-hole/v2"
 	"log"
 )
 
 func client() *rabbithole.Client {
-	config := internal.CLientConfig{
+	config := checks.CLientConfig{
 		Address:  "http://localhost:15672",
 		Username: "monitoring",
 		Password: "secret",

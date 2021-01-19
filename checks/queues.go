@@ -1,4 +1,4 @@
-package internal
+package checks
 
 import rabbithole "github.com/Serviceware/rabbit-hole/v2"
 
