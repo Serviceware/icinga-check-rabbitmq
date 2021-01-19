@@ -35,7 +35,7 @@ type CertExpirationOpts struct {
 }
 
 type PortListenerOpts struct {
-	Port uint `long:"port" dscription:"Option for port-listener"`
+	Port uint `long:"port" description:"Option for port-listener"`
 }
 
 type ProtocolListenerOpts struct {
