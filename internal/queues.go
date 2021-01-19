@@ -20,5 +20,9 @@ func CheckQueues(client *rabbithole.Client) int {
 		}
 	}
 
+	if status == OK {
+		println("ok")
+	}
+
 	return status
 }

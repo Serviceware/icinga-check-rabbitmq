@@ -27,5 +27,9 @@ func CheckMessages(client *rabbithole.Client, opts *CheckMessagesOpts) int {
 		status = WARNING
 	}
 
+	if status == OK {
+		println("ok")
+	}
+
 	return status
 }

@@ -12,5 +12,6 @@ func Ping(client *rabbithole.Client) int {
 		return CRITICAL
 	}
 
+	println("ok")
 	return OK
 }
