@@ -10,6 +10,11 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    services:
+      rabbitmq:
+        image: rabbitmq:3.8.10-rc.6-management
+        ports:
+          - 15672:15672
     steps:
     - uses: actions/checkout@v2
 
