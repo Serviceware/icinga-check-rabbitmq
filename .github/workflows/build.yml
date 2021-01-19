@@ -12,8 +12,7 @@ jobs:
     services:
       rabbitmq:
         image: rabbitmq:3.8.10-rc.6-management
-        options:
-          hostname: github
+        options: --hostname github
         env:
           RABBITMQ_NODENAME: rabbit
           RABBITMQ_DEFAULT_USER: monitoring
