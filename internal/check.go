@@ -7,6 +7,5 @@ const (
 	UNKNOWN  = 3
 )
 
-type Check interface {
-	DoCheck() int
+type Void struct {
 }

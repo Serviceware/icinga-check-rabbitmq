@@ -10,7 +10,7 @@ import (
 )
 
 type args struct {
-	Address string `long:"address" description:"Address of the nomad server" group:"connection"`
+	Address string `long:"address" description:"Address of the nomad server" group:"connection" required:"true"`
 
 	CaCert       string `long:"ca" description:"Path to ca cert" group:"connection"`
 	ClientCert   string `long:"cert" description:"Path to client cert" group:"connection"`
@@ -19,13 +19,13 @@ type args struct {
 	Password     string `long:"password" description:"Password for RabbitMQ authentication" group:"connection"`
 	PasswordFile string `long:"passwordFile" description:"File which contains the password for RabbitMQ authentication" group:"connection"`
 
-	Aliveness internal.CheckAlivenessOpts `command:"aliveness"`
-	Health    void                        `command:"health"`
-	Node      internal.CheckNodeOpts      `command:"node"`
-	Messages  internal.CheckMessagesOpts  `command:"messages"`
-}
-
-type void struct {
+	Ping        internal.Void              `command:"ping"`
+	Health      internal.CheckHealthOpts   `command:"health"`
+	Node        internal.CheckNodeOpts     `command:"node"`
+	Messages    internal.CheckMessagesOpts `command:"messages"`
+	Channels    internal.Void              `command:"channels"`
+	Connections internal.Void              `command:"connections"`
+	Queues      internal.Void              `command:"queues"`
 }
 
 var opts = new(args)
@@ -33,19 +33,23 @@ var opts = new(args)
 func main() {
 	parser := parseFlags()
 
-	code := 4
+	status := 4
 	switch parser.Active.Name {
-	case "aliveness":
-		code = internal.CheckAliveness(rabbitmqClient(), &opts.Aliveness)
+	case "ping":
+		status = internal.Ping(rabbitmqClient())
 	case "health":
-		code = internal.CheckHealth(rabbitmqClient())
+		status = internal.CheckHealth(rabbitmqClient(), internal.Check(parser.Active.Active.Name), &opts.Health)
 	case "node":
-		code = internal.CheckNode(rabbitmqClient(), &opts.Node)
+		status = internal.CheckNode(rabbitmqClient(), &opts.Node)
 	case "messages":
-		code = internal.CheckMessages(rabbitmqClient(), &opts.Messages)
+		status = internal.CheckMessages(rabbitmqClient(), &opts.Messages)
+	case "connections":
+		status = internal.CheckConnections(rabbitmqClient())
+	case "queues":
+		status = internal.CheckQueues(rabbitmqClient())
 	}
 
-	os.Exit(code)
+	os.Exit(status)
 }
 
 func rabbitmqClient() *rabbithole.Client {

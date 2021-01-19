@@ -7,12 +7,13 @@ type CheckMessagesOpts struct {
 	CriticalLimit int `long:"totalMessagesCriticalLimit" description:""`
 }
 
+// Checks if message count is above a warn or critical limit
 func CheckMessages(client *rabbithole.Client, opts *CheckMessagesOpts) int {
 	overview, err := client.Overview()
 
 	if err != nil {
 		println(err.Error())
-		return 2
+		return UNKNOWN
 	}
 
 	code := OK

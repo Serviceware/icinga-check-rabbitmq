@@ -6,12 +6,13 @@ type CheckNodeOpts struct {
 	Node string `long:"node" description:"The node which should be checked"`
 }
 
+// Checks if node is running and disk or memory alarms are raised
 func CheckNode(client *rabbithole.Client, opts *CheckNodeOpts) int {
 	node, err := client.GetNode(opts.Node)
 
 	if err != nil {
 		println(err.Error())
-		return 2
+		return UNKNOWN
 	}
 
 	code := OK

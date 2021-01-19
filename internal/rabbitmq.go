@@ -21,15 +21,17 @@ type CLientConfig struct {
 }
 
 func (c *CLientConfig) NewRabbitMQClient() (*rabbithole.Client, error) {
-	tlsConfig := &tls.Config{
-		Certificates: c.certificates(),
-		RootCAs:      c.rootCAs(),
+	if c.ClientCert != "" {
+		tlsConfig := &tls.Config{
+			Certificates: c.certificates(),
+			RootCAs:      c.rootCAs(),
+		}
+
+		transport := &http.Transport{TLSClientConfig: tlsConfig}
+		return rabbithole.NewTLSClient(c.Address, c.Username, c.Password, transport)
 	}
 
-	transport := &http.Transport{TLSClientConfig: tlsConfig}
-	client, err := rabbithole.NewTLSClient(c.Address, c.Username, c.Password, transport)
-
-	return client, err
+	return rabbithole.NewClient(c.Address, c.Username, c.Password)
 }
 
 func (c *CLientConfig) certificates() []tls.Certificate {
