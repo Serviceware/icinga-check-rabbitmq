@@ -1,7 +1,8 @@
 package checks
 
 import (
-	rabbithole "github.com/Serviceware/rabbit-hole/v2"
+	"github.com/Serviceware/rabbit-hole/v2"
+	"strconv"
 	"strings"
 )
 
@@ -44,41 +45,114 @@ type ProtocolListenerOpts struct {
 
 func CheckHealth(client *rabbithole.Client, check Check, opts *CheckHealthOpts) int {
 
-	var health *rabbithole.Health
-	var err error
 	switch check {
 	case ALARMS:
-		health, err = client.HealthCheckAlarms()
+		return handleResourceAlarm(client.HealthCheckAlarms)
 	case LOCAL_ALARMS:
-		health, err = client.HealthCheckLocalAlarms()
+		return handleResourceAlarm(client.HealthCheckLocalAlarms)
 	case CERTIFICATE_EXPIRATION:
-		health, err = client.HealthCheckCertificateExpiration(opts.CertificateExpiration.Within, opts.CertificateExpiration.Unit)
+		check := func() (rabbithole.HealthCheckStatus, error) {
+			return client.HealthCheckCertificateExpiration(opts.CertificateExpiration.Within, opts.CertificateExpiration.Unit)
+		}
+		return handleGeneralCheck(check)
 	case PORT_LISTENER:
-		health, err = client.HealthCheckPortListenerListener(opts.PortListener.Port)
+		check := func() (rabbithole.PortListenerCheckStatus, error) {
+			return client.HealthCheckPortListener(opts.PortListener.Port)
+		}
+		return handlePortListenerCheck(check)
 	case PROTOCOL_LISTENER:
-		health, err = client.HealthCheckProtocolListener(opts.ProtocolLister.Protocol)
+		check := func() (rabbithole.ProtocolListenerCheckStatus, error) {
+			return client.HealthCheckProtocolListener(opts.ProtocolLister.Protocol)
+		}
+		return handleProtocolListenerCheck(check)
 	case VIRTUAL_HOSTS:
-		health, err = client.HealthCheckVirtualHosts()
+		return handleGeneralCheck(client.HealthCheckVirtualHosts)
 	case NODE_IS_MIRROR_SYNC_CRITICAL:
-		health, err = client.HealthCheckNodeIsMirrorSyncCritical()
+		return handleGeneralCheck(client.HealthCheckNodeIsMirrorSyncCritical)
 	case NODE_IS_QUORUM_CRITICAL:
-		health, err = client.HealthCheckNodeIsQuorumCritical()
+		return handleGeneralCheck(client.HealthCheckNodeIsQuorumCritical)
 	}
 
-	if health == nil {
+	return UNKNOWN
+}
+
+func handleResourceAlarm(f func() (rabbithole.ResourceAlarmCheckStatus, error)) int {
+	status, err := f()
+
+	if err != nil {
 		println(err.Error())
 		return UNKNOWN
 	}
 
-	if health.Status != "ok" {
-		println("status =", health.Status)
-		println("reason =", health.Reason)
-		println("missing = ", health.Missing)
-		println("ports", strings.Join(health.Ports, ","))
-		println("protocols", strings.Join(health.Protocols, ","))
-		return WARNING
-	} else {
-		println("status=ok")
+	if status.Ok() {
 		return OK
+	} else {
+		println(status.Status + " - " + status.Reason)
+		for _, alarm := range status.Alarms {
+			println(alarm.Node + " - " + alarm.Resource)
+		}
+		return WARNING
+	}
+}
+
+func handleGeneralCheck(check func() (rabbithole.HealthCheckStatus, error)) int {
+	status, err := check()
+
+	if err != nil {
+		println(err.Error())
+		return UNKNOWN
+	}
+
+	if status.Ok() {
+		return OK
+	} else {
+		println(status.Status + " - " + status.Reason)
+		return WARNING
+	}
+}
+
+func handlePortListenerCheck(check func() (rabbithole.PortListenerCheckStatus, error)) int {
+	status, err := check()
+
+	if err != nil {
+		println(err.Error())
+		return UNKNOWN
+	}
+
+	if status.Ok() {
+		return OK
+	} else {
+		println(status.Status + " - " + status.Reason)
+		println("port:", status.Port)
+		println("missing:", status.Missing)
+		println("ports:", strings.Join(toStringArray(status.Ports), ","))
+		return WARNING
+	}
+}
+
+func toStringArray(intList []uint) (res []string) {
+	for _, u := range intList {
+		res = append(res, strconv.Itoa(int(u)))
+	}
+
+	return res
+}
+
+func handleProtocolListenerCheck(check func() (rabbithole.ProtocolListenerCheckStatus, error)) int {
+	status, err := check()
+
+	if err != nil {
+		println(err.Error())
+		return UNKNOWN
+	}
+
+	if status.Ok() {
+		return OK
+	} else {
+		println(status.Status + " - " + status.Reason)
+		println("protocol:", status.Protocols)
+		println("missing:", status.Missing)
+		println("protocols:", strings.Join(status.Protocols, ","))
+		return WARNING
 	}
 }
