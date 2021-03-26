@@ -18,7 +18,7 @@ func CheckShovels(client *rabbithole.Client, opts *CheckShovelsOpts) int {
 	status := OK
 
 	for _, shovel := range shovels {
-		if shovel.State != "running" || shovel.State != "starting" {
+		if shovel.State != "running" && shovel.State != "starting" {
 			println(shovel.Name + ".state=" + shovel.State)
 			status = WARNING
 		}
