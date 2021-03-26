@@ -59,3 +59,15 @@ func TestQueues(t *testing.T) {
 		t.Fail()
 	}
 }
+
+// Needs shovel plugin installed in RabbitMQ
+//func TestShovels(t *testing.T)  {
+//	opts := &checks.CheckShovelsOpts{
+//		Vhost: "/",
+//	}
+//	status := checks.CheckShovels(client(), opts)
+//
+//	if status != 0 {
+//		t.Fail()
+//	}
+//}

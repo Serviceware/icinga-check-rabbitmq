@@ -26,6 +26,7 @@ type args struct {
 	Channels    checks.Void              `command:"channels"`
 	Connections checks.Void              `command:"connections"`
 	Queues      checks.Void              `command:"queues"`
+	Shovels     checks.CheckShovelsOpts  `command:"shovels"`
 }
 
 var opts = new(args)
@@ -49,6 +50,8 @@ func main() {
 		status = checks.Ping(rabbitmqClient())
 	case "queues":
 		status = checks.CheckQueues(rabbitmqClient())
+	case "shovels":
+		status = checks.CheckShovels(rabbitmqClient(), &opts.Shovels)
 	}
 
 	os.Exit(status)
