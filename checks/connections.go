@@ -14,7 +14,7 @@ func CheckConnections(client *rabbithole.Client) int {
 	status := OK
 
 	for _, connection := range connections {
-		if connection.State != "running" {
+		if connection.State != "running" && connection.State != "" {
 			println(connection.Name + ".state=" + connection.State)
 			status = WARNING
 		}
